@@ -209,7 +209,7 @@ async def reset_channel(ctx):
 
 @bot.slash_command(description = "Resets the symbols the bot uses in reactions")
 @option ("reaction", description="Choose what reaction's symbol to change", choices=["correct_reaction", "new_record_reaction", "10_reaction", "100_reaction", "wrong_reaction", "wait_reaction", "all"])
-async def reset_reactions(ctx, reaction):
+async def reset_reaction(ctx, reaction):
     if not ctx.user.guild_permissions.administrator:
         return await ctx.response.send_message("You aren't an admin!")
 
@@ -235,9 +235,9 @@ async def reset_reactions(ctx, reaction):
 @bot.slash_command(description = "Sets the symbols the bot uses in reactions")
 @option("reaction", description="Choose what reaction's symbol to change", choices=["correct_reaction", "new_record_reaction", "10_reaction", "100_reaction", "wrong_reaction", "wait_reaction"])
 @option("symbol", description = "Enter the emoji the bot should use for the chosen reaction", required = False)
-async def set_reactions(ctx, reaction, symbol):
-#    if not ctx.user.guild_permissions.administrator:
-#        return await ctx.response.send_message("You aren't an admin!")
+async def set_reaction(ctx, reaction, symbol):
+    if not ctx.user.guild_permissions.administrator:
+        return await ctx.response.send_message("You aren't an admin!")
 
     global wawa_data
     channel_data = wawa_data[str(ctx.channel.id)]
